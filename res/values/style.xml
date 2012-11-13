@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Header -->
+    <style name="AliasTitle">
+        <item name="android:textSize">16dip</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="techStyle">
+        <item name="android:textSize">11dip</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="stateStyle">
+        <item name="android:textSize">11dip</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/holo_blue_light</item> <!-- #ff33b5e5 -->
+        <item name="android:layout_marginBottom">5dip</item>
+    </style>
+
+</resources>

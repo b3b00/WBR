@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, WIFIBackupAndRestoreActivity!</string>
+    <string name="app_name">WIFI Backup &amp; Restore</string>
+    <string name="backup_success">la sauvegarde a réussie</string>
+    <string name="backup_failure">la sauvegarde a échouée</string>
+    <string name="restore_success">la restauration a réussie</string>
+    <string name="restore_failure">la retauration a échouée</string>
+	<string name="backup">Sauvegarde</string>
+	<string name="restore">Restauration</string>
+	<string name="backupeds">sauvés</string>
+	<string name="configureds">configurés</string>
+	<string name="backuped">sauvé</string>
+	<string name="configured">configuré</string>
+	<string name="confirm_restore">Confirmer la restauration des réseaux :</string>
+	<string name="ok">OK</string>
+	<string name="cancel">Annuler</string>
+	<string name="refresh">rafraichir</string>	
+</resources>

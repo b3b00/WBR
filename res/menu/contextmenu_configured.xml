@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item 
+     	 android:id="@+id/save_network" 
+     	 android:title="@string/backup">
+	</item>
+	<item
+       android:id="@+id/view_conf_network"
+       android:title="@string/view">       
+	</item>
+</menu>

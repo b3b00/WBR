@@ -1,0 +1,31 @@
+class MyGestureDetector extends SimpleOnGestureListener {
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        try {
+            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+            return false;
+            // right to left swipe
+            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                int i = mTabHost.getCurrentTab();
+                mTabHost.setCurrentTab(i+1);
+                Toast.makeText(GestureScrollTabActivity.this, "Left Swipe", Toast.LENGTH_SHORT).show();
+            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                int i = mTabHost.getCurrentTab();
+                mTabHost.setCurrentTab(i-1);
+                Toast.makeText(GestureScrollTabActivity.this, "Right Swipe", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            // nothing
+        }
+    return false;
+    }
+}
+
+@Override
+public void onClick(View v) {
+    Filter f = (Filter) v.getTag();
+    // FilterFullscreenActivity.show(this, input, f);
+    // Toast.makeText(GestureScrollTabActivity.this, "onClick", Toast.LENGTH_SHORT).show();
+}
+
+}

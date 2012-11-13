@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="true"
+    android:orientation="horizontal"
+    android:paddingLeft="3.0dip"
+    android:paddingRight="3.0dip" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="3.0dip"
+        android:paddingRight="3.0dip" >
+
+        <TextView
+            android:id="@+id/alias"
+            style="@style/AliasTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maison" />
+
+        <TextView
+            android:id="@+id/ssid"
+            style="@style/techStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="217946D9293E574379A6265AAA" />
+        
+        
+
+        <TextView
+            android:id="@+id/keymgmt"
+            style="@style/techStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WPA_PSK" />
+    </LinearLayout>
+
+         <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom|right"
+        android:orientation="horizontal" >   
+        
+        
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="bottom|right"
+        android:orientation="vertical" >
+		
+        <TextView
+            android:id="@+id/state"
+            style="@style/stateStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="configured" />
+        
+        
+    </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

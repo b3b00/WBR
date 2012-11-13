@@ -1,0 +1,17 @@
+<project>
+<target name="-pre-build">
+
+	<echo message="#############################################"/>
+	<echo message="####                                     ####"/>
+	<echo message="####   TEST CUSTOM                       ####"/>
+	<echo message="####                                     ####"/>
+	<echo message="#############################################"/>
+<!--
+		<copy todir="bin">
+			<fileset dir="src">
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>-->
+
+	</target>
+	</project>

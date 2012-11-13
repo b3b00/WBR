@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/layout_root"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:padding="10dp"
+              android:gravity="center"
+              >
+    
+    
+    <TextView android:id="@+id/view_alias"
+        android:text="quelque part"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:textColor="#FFF"
+              android:textStyle="bold"
+              android:paddingBottom="10dip"
+              />
+    
+    <TextView android:id="@+id/view_ssid"
+        android:text="Livebox-F42D"
+        		android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:textColor="#BBB"
+              android:paddingBottom="10dip"
+              />
+    
+    <TextView android:id="@+id/view_keymgmt"
+        		android:text="WPA-PSK"
+        		android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:textColor="#BBB"
+              android:paddingBottom="10dip"
+              />
+    
+    <TextView android:id="@+id/view_psk"
+        		android:text="1234123412341234"
+        		android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:textColor="#BBB"
+              android:paddingBottom="10dip"
+              />
+    
+    <Button
+        android:id="@+id/view_ok"
+        android:layout_width="75dip"
+        android:layout_height="wrap_content"
+        android:text="@string/ok" />
+
+</LinearLayout>

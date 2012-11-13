@@ -1,5 +1,6 @@
 package com.beboo.wifibackupandrestore;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
 import java.io.File;
@@ -116,7 +117,7 @@ public class WIFIBackupAndRestoreActivity extends TabActivity  implements OnClic
 		Log.i("WBR","setting backup histo dir");
 		
 
-		new InitializerTask().execute(this);
+		new InitializerTask(this).execute();
 		
 	}
 

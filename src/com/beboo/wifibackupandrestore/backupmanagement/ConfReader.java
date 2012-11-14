@@ -103,9 +103,6 @@ public class ConfReader {
 			Map<String,Network> networks = reader.getNetworks(args[0]);
 			System.out.println("found "+networks.size()+" networks");
 			for (Network n : networks.values()) {
-
-				//System.out.println(getString(R.string.wifi_conf_file_start));
-
 				System.out.println("============================" );
 				System.out.println(n.formatForWIFIBackupFile());
 				System.out.println();

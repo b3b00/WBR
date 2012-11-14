@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="wifi_conf_file_start">ctrl_interface=/data/misc/wifi\nctrl_interface_group=wifi\nupdate_config=1</string>
 	 <string name="hello">Hello World, WIFIBackupAndRestoreActivity!</string>
     <string name="app_name">WIFI Backup &amp; Restore</string>
     <string name="backup_success">backup succeeded</string>

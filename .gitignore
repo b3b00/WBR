@@ -1,0 +1,10 @@
+*.apk
+*.class 
+*.png
+*.dex
+/gen/*
+/bin/*
+*.bat
+wbr.log
+.project
+.classpath

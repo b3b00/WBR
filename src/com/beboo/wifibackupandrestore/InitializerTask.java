@@ -25,8 +25,10 @@ class InitializerTask extends AsyncTask<Void, Void, Void> {
 
 	protected void onPreExecute() {
 		this.progress = new ProgressDialog(context);
-		this.progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		this.progress.setCancelable(false);
+		this.progress.setProgressStyle(ProgressDialog.STYLE_SPINNER); 
+		this.progress.setTitle("");
+		this.progress.setMessage("Loading...");
+		this.progress.setCancelable(true);
 		this.progress.setIndeterminate(true);
 		this.progress.show();
 	}

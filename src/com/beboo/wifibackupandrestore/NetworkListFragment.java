@@ -64,7 +64,7 @@ public NetworkListFragment() {
 	
 
 	public SimpleAdapter initList(List<Network> networks) {
-		ListView lv= (ListView)getActivity().findViewById(android.R.id.list);
+		ListView lv= getListView();
 
 		// create the grid item mapping
 		String[] from = new String[] {ALIAS_ITEM, SSID_ITEM, KEYMGMT_ITEM, STATE_ITEM};
@@ -96,7 +96,7 @@ public NetworkListFragment() {
 	}
 	
 	public SimpleAdapter refresh(List<Network> networks) {
-		ListView lv= (ListView)getActivity().findViewById(android.R.id.list);
+		ListView lv= getListView();
 
 		// create the grid item mapping
 		String[] from = new String[] {ALIAS_ITEM, SSID_ITEM, KEYMGMT_ITEM, STATE_ITEM};

@@ -88,11 +88,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-		fragments.put(0,new BackupedFragment());
-		fragments.put(1,new BackupedFragment());
-		 // For each of the sections in the app, add a tab to the action bar.
-        actionBar.addTab(actionBar.newTab().setText("Config --").setTabListener(this));
-        actionBar.addTab(actionBar.newTab().setText("Backup").setTabListener(this));
+		
 
 
 	}
@@ -127,7 +123,24 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         
-		getSupportFragmentManager().beginTransaction().replace(R.id.container, fragments.get(tab.getPosition())).commit();
+		int tabIndex = tab.getPosition();
+		
+		NetworkListFragment fragment = fragments.get(tabIndex);
+		
+		if (fragment == null) {
+			if (tabIndex == 0) {
+				fragment = new BackupedFragment();				
+			}
+			else if (tabIndex == 1) {
+				fragment = new ConfiguredFragment();			
+			}
+		}
+		
+		
+		fragments.put(tabIndex,fragment);
+		
+		
+		getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
      
     }
 

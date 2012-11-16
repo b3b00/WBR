@@ -140,7 +140,7 @@ public class WIFIConfigurationManager {
 	
 	public void refresh() {
 		initContent();
-		NotifyListeners();
+		//NotifyListeners();
 	}
 	
 	public void init(Context context, WifiManager  wifiManager) {
@@ -163,6 +163,9 @@ public class WIFIConfigurationManager {
 	
 	public void setConfiguredNetworkChangedListener(NetworkDataChangedListener listener) {
 		configuredNetworksListener.add(listener);
+		if (configured != null && configured.size() > 0) {
+			listener.onNetworkDataChanged();
+		}
 	}
 	
 	public void setBackupedNetworkChangedListener(NetworkDataChangedListener listener) {
@@ -192,20 +195,20 @@ public class WIFIConfigurationManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		notifyBackupedNetworkListener();
-		notifyConfiguredNetworkListener();
+//		notifyBackupedNetworkListener();
+//		notifyConfiguredNetworkListener();
 		
 	}
 	
 	
 	public void addConfiguredNetwork(Network net) {
 		configured.put(net.getSsid(),net);
-		notifyConfiguredNetworkListener();
+		//notifyConfiguredNetworkListener();
 	}
 	
 	public void addBackupedNetwork(Network net) {
 		backuped.put(net.getSsid(), net);
-		notifyBackupedNetworkListener();
+		//notifyBackupedNetworkListener();
 	}
 	
 	public Network getConfiguredNetworkBySsid(String ssid) {		

@@ -72,6 +72,10 @@ public class ConfiguredFragment extends NetworkListFragment {
 		confManager.setConfiguredNetworkChangedListener(this);
 
 	}
+	
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		contentAdapter = initList(confManager.getConfiguredNetworks());
+	}
 
 
 // Menu Contextuel

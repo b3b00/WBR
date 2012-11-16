@@ -48,6 +48,10 @@ public class BackupedFragment extends NetworkListFragment {
 		confManager.setBackupedNetworkChangedListener(this);
 
 	}
+	
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		contentAdapter = initList(confManager.getBackupedNetworks());
+	}
 
 
 

@@ -195,7 +195,7 @@ public class WIFIConfigurationManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		notifyBackupedNetworkListener();
+		notifyBackupedNetworkListener();
 //		notifyConfiguredNetworkListener();
 		
 	}
@@ -352,6 +352,7 @@ public class WIFIConfigurationManager {
 		
 		
 		
+		notifyBackupedNetworkListener();
 
 	}
 
@@ -386,6 +387,7 @@ public class WIFIConfigurationManager {
 			Network configured = getConfiguredNetworkBySsid(network.getSsid());
 			configured.setState(context.getString(R.string.backuped));
 			addConfiguredNetwork(configured);
+			notifyConfiguredNetworkListener();
 		}
 		else  {
 			Log.d("WBR","network already backuped ... not saving");

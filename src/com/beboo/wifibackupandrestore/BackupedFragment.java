@@ -34,23 +34,15 @@ public class BackupedFragment extends NetworkListFragment {
 		
 			
 		Log.d("WBR","initialisation of  backuped networks fragment");		
-		confManager = WIFIConfigurationManager.getInstance();
-//		contentAdapter = initList(confManager.getBackupedNetworks());
-		/*ListView lv = getListView();
+		
 
-		// Listener : on envoie un intent avec l'id du contact
-		lv.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {				
-				//TODO : display network details
-			}
-		});*/
-
-		confManager.setBackupedNetworkChangedListener(this);
 
 	}
 	
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		contentAdapter = initList(confManager.getBackupedNetworks());
+	public void onViewCreated(View view, Bundle savedInstanceState) {		
+		confManager = WIFIConfigurationManager.getInstance();
+		confManager.setBackupedNetworkChangedListener(this);
+
 	}
 
 

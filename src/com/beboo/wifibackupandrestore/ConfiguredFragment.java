@@ -58,23 +58,15 @@ public class ConfiguredFragment extends NetworkListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.d("WBR","initialisation of  configured networks fragment");		
-		confManager = WIFIConfigurationManager.getInstance();
-		//contentAdapter = initList(confManager.getBackupedNetworks());
-		/*ListView lv = getListView();
-
-		// Listener : on envoie un intent avec l'id du contact
-		lv.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {				
-				//TODO : display network details
-			}
-		});*/
-
-		confManager.setConfiguredNetworkChangedListener(this);
+		
+	
+		
 
 	}
 	
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		contentAdapter = initList(confManager.getConfiguredNetworks());
+	public void onViewCreated(View view, Bundle savedInstanceState) {		
+		confManager = WIFIConfigurationManager.getInstance();
+		confManager.setConfiguredNetworkChangedListener(this);
 	}
 
 

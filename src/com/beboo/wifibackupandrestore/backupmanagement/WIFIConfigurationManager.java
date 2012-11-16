@@ -167,6 +167,9 @@ public class WIFIConfigurationManager {
 	
 	public void setBackupedNetworkChangedListener(NetworkDataChangedListener listener) {
 		backupedNetworksListener.add(listener);
+		if (backuped != null && backuped.size() > 0) {
+			listener.onNetworkDataChanged();
+		}
 	}
 	
 	private void notifyBackupedNetworkListener() {

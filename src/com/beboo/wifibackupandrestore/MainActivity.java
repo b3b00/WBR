@@ -88,7 +88,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-		
+		actionBar.addTab(actionBar.newTab().setText(getResources().getString(R.string.configureds)).setTabListener(this));
+		actionBar.addTab(actionBar.newTab().setText(getResources().getString(R.string.backupeds)).setTabListener(this));
 
 
 	}
@@ -129,16 +130,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		
 		if (fragment == null) {
 			if (tabIndex == 0) {
-				fragment = new BackupedFragment();				
+				fragment = new ConfiguredFragment();				
+				fragments.put(tabIndex,fragment);
 			}
 			else if (tabIndex == 1) {
-				fragment = new ConfiguredFragment();			
+				fragment = new BackupedFragment();			
+				fragments.put(tabIndex,fragment);
 			}
 		}
-		
-		
-		fragments.put(tabIndex,fragment);
-		
 		
 		getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
      

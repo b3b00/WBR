@@ -49,20 +49,25 @@ public class ConfiguredFragment extends NetworkListFragment {
 
 	private SimpleAdapter contentAdapter;
 	
+	public ConfiguredFragment() {
+		Log.d("WBR","################ new ConfiguredFragment");
+	}
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d("WBR","initialisation of  backuped networks activity");		
+		Log.d("WBR","initialisation of  configured networks fragment");		
 		confManager = WIFIConfigurationManager.getInstance();
-		contentAdapter = initList(confManager.getBackupedNetworks());
-		ListView lv = getListView();
+		//contentAdapter = initList(confManager.getBackupedNetworks());
+		/*ListView lv = getListView();
 
 		// Listener : on envoie un intent avec l'id du contact
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {				
 				//TODO : display network details
 			}
-		});
+		});*/
 
 		confManager.setConfiguredNetworkChangedListener(this);
 
@@ -180,7 +185,8 @@ public class ConfiguredFragment extends NetworkListFragment {
 	public void onNetworkDataChanged() {
 
 		Log.d("WBR","ConfiguredActivity : configured networks updated");		
-		initList(confManager.getConfiguredNetworks());
+		contentAdapter = initList(confManager.getConfiguredNetworks());
+		//initList(confManager.getConfiguredNetworks());
 	}
 
 }

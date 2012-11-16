@@ -24,20 +24,26 @@ public class BackupedFragment extends NetworkListFragment {
 
 	private SimpleAdapter contentAdapter;
 	
+	public BackupedFragment() {
+		Log.d("WBR","################ new BackupedFragment");
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d("WBR","initialisation of  backuped networks activity");		
+		
+			
+		Log.d("WBR","initialisation of  backuped networks fragment");		
 		confManager = WIFIConfigurationManager.getInstance();
-		contentAdapter = initList(confManager.getBackupedNetworks());
-		ListView lv = getListView();
+//		contentAdapter = initList(confManager.getBackupedNetworks());
+		/*ListView lv = getListView();
 
 		// Listener : on envoie un intent avec l'id du contact
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {				
 				//TODO : display network details
 			}
-		});
+		});*/
 
 		confManager.setBackupedNetworkChangedListener(this);
 
@@ -120,7 +126,8 @@ public class BackupedFragment extends NetworkListFragment {
 	public void onNetworkDataChanged() {
 
 		Log.d("WBR","BackupedActivity : backuped networks updated");
-		initList(confManager.getBackupedNetworks());
+		contentAdapter = initList(confManager.getBackupedNetworks());
+		//initList(confManager.getBackupedNetworks());
 	}
 
 }

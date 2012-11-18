@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -93,6 +95,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	}
 	
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menu_refresh:
+				// app icon in action bar clicked; refresh 
+				//Toast.makeText(this,"rafraichir",Toast.LENGTH_LONG).show();
+				WIFIConfigurationManager.getInstance().refresh();				
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+	
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -109,10 +123,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_main_activity, menu);
+		return true;
+	}
 
     
 

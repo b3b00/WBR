@@ -271,6 +271,9 @@ public class WIFIConfigurationManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        catch (RuntimeException re) {
+            re.printStackTrace();
+        }
 	}
 	
 	private void debugNetworks(String name, Map<String, Network> networks) {

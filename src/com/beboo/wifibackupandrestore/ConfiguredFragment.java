@@ -75,11 +75,11 @@ public class ConfiguredFragment extends NetworkListFragment {
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 
-		// On crée notre menu
+		// On crÃ©e notre menu
 		MenuInflater inflater = getActivity().getMenuInflater();
 		inflater.inflate(R.menu.contextmenu_configured, menu);
 
-		// On récupère le nom pour l'entête du menu
+		// On rÃ©cupÃ©re le nom pour l'entÃªte du menu
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		menu.setHeaderTitle(" ");
 
@@ -91,6 +91,7 @@ public class ConfiguredFragment extends NetworkListFragment {
 		
 
 		Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked");
+
 		TextView ssid = (TextView)info.targetView.findViewById(R.id.alias);
 		Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked :: was on "+ssid.getText()+" / @"+info.position);
 		
@@ -173,7 +174,7 @@ public class ConfiguredFragment extends NetworkListFragment {
 	/*********************************************
 	 * 
 	 * 
-	 *             mise à jour de la liste
+	 *             mise Ã  jour de la liste
 	 * 
 	 **********************************************/
 

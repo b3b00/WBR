@@ -298,6 +298,9 @@ public class WIFIConfigurationManager {
 		} catch (IOException e) {			
 			e.printStackTrace();
 		}
+        catch (RuntimeException re) {
+            re.printStackTrace();
+        }
 	}
 
 

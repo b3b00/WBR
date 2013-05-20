@@ -58,11 +58,11 @@ public class BackupedFragment extends NetworkListFragment {
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 
-		// On crée notre menu
+		// On crÃ©e notre menu
 		MenuInflater inflater = getActivity().getMenuInflater();
 		inflater.inflate(R.menu.contextmenu_backuped, menu);
 
-		// On récupère le nom pour l'entête du menu
+		// On rÃ©cupÃ©re le nom pour l'entÃªte du menu
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		int position =  info.position;
 		Network net = confManager.getBackupedNetworks().get(position);
@@ -115,7 +115,7 @@ public class BackupedFragment extends NetworkListFragment {
 
 	/*********************************************
 	 * 
-	 *             mise à jour de la liste
+	 *             mise ï¿½ jour de la liste
 	 *     
 	 **********************************************/
 

@@ -9,3 +9,4 @@ wbr.log
 .project
 .classpath
 .idea
+out/*

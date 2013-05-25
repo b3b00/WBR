@@ -19,4 +19,6 @@
 	<string name="edit">edit</string>
 	<string name="view">view</string>
 	<string name="delete">delete</string>
+    <string name="msg_rename_net">Rename network %1$ :</string>
+    <string name="msg_set_alias_net">set an alias to network %1$ :</string>
 </resources>

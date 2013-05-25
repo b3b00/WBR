@@ -16,8 +16,10 @@
 	<string name="ok">OK</string>
 	<string name="cancel">Cancel</string>
 	<string name="refresh">refresh</string>
-	<string name="edit">edit</string>
+	<string name="edit">rename</string>
 	<string name="view">view</string>
 	<string name="delete">delete</string>
+    <string name="msg_rename_net">Rename network </string>
+    <string name="msg_set_alias_net">set an alias to network </string>
 	
 </resources>

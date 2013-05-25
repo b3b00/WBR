@@ -1,6 +1,9 @@
 package com.beboo.wifibackupandrestore;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -8,15 +11,12 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.beboo.wifibackupandrestore.backupmanagement.Network;
 import com.beboo.wifibackupandrestore.backupmanagement.WIFIConfigurationManager;
-import android.widget.SimpleAdapter;
 
 public class BackupedFragment extends NetworkListFragment {
 
@@ -90,6 +90,41 @@ public class BackupedFragment extends NetworkListFragment {
 			case R.id.delete_backup_network : {
 				confManager.deleteBackupedNetwork(net); 
 			}
+            case R.id.edit_backup_network : {
+
+                Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked :: was on "+ssid+" / "+net);
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle(R.string.backup);
+
+                String msg = getString(R.string.msg_set_alias_net) + " " + ssid.getText().toString() + " :";
+                alert.setMessage(msg);
+
+                // Set an EditText view to get user input
+                final EditText input = new EditText(getActivity());
+                alert.setView(input);
+
+                DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (id == DialogInterface.BUTTON_POSITIVE) {
+                            String alias = input.getText().toString();
+                            Log.d("WBR","setting alias ["+alias+"] to network ["+net.getSsid()+"]");
+                            try {
+                                confManager.renameNetwork(net,alias);
+                            }
+                            catch(Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                };
+
+                alert.setPositiveButton(getString(R.string.ok), listener);
+                alert.setNegativeButton(getString(R.string.cancel), listener);
+
+                alert.show();
+
+                break;
+            }
 			}
 		}
 		return true;

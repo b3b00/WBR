@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.SimpleAdapter;
+import android.content.res.Resources;
 
 import com.beboo.wifibackupandrestore.backupmanagement.Network;
 import com.beboo.wifibackupandrestore.backupmanagement.WIFIConfigurationManager;
@@ -101,31 +102,33 @@ public class ConfiguredFragment extends NetworkListFragment {
 			switch (item.getItemId()) {
 			case R.id.save_network: {
 
-				Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked :: was on "+ssid+" / "+net);
-				AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-				alert.setTitle(R.string.backup);
-				alert.setMessage("donnez un alias au r\u00e9seau "+ssid.getText().toString() +" :");
+                Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked :: was on "+ssid+" / "+net);
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle(R.string.backup);
 
-				// Set an EditText view to get user input 
-				final EditText input = new EditText(getActivity());
-				alert.setView(input);
 
-				DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
+                String msg = getString(R.string.msg_rename_net) + " " +ssid.getText().toString() + " :";
+                alert.setMessage(msg);
 
-						// TODO Auto-generated method stub
-						String alias = input.getText().toString();
-						Log.d("WBR","setting alias ["+alias+"] to network ["+net.getSsid()+"]");
-						backupNetwork(net, alias);
-					}
-				};
+                // Set an EditText view to get user input
+                final EditText input = new EditText(getActivity());
+                alert.setView(input);
 
-				alert.setPositiveButton(getString(R.string.ok), listener);
-				alert.setNegativeButton(getString(R.string.cancel), listener);
+                DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (id == DialogInterface.BUTTON_POSITIVE) {
+                            // TODO Auto-generated method stub
+                            String alias = input.getText().toString();
+                            Log.d("WBR","setting alias ["+alias+"] to network ["+net.getSsid()+"]");
+                            backupNetwork(net, alias);
+                        }
+                    }
+                };
 
-				alert.show();
+                alert.setPositiveButton(getString(R.string.ok), listener);
+                alert.setNegativeButton(getString(R.string.cancel), listener);
 
-				break;
+                alert.show();
 			}
 			case R.id.view_conf_network : {
 				viewNetwork(net);

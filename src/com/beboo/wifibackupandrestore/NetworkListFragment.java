@@ -77,7 +77,7 @@ public NetworkListFragment() {
 		}
 
 		// fill in the grid_item layout
-		SimpleAdapter adapter = new SimpleAdapter(getActivity(), fillMaps, R.layout.onelinelist2, from, to);
+		SimpleAdapter adapter = new NetworkListAdapter(getActivity(), fillMaps, R.layout.onelinelist2, from, to);
 		lv.setAdapter(adapter);
 
 
@@ -109,7 +109,7 @@ public NetworkListFragment() {
 		}
 
 		// fill in the grid_item layout
-		SimpleAdapter adapter = new SimpleAdapter(getActivity(), fillMaps, R.layout.onelinelist2, from, to);
+		SimpleAdapter adapter = new NetworkListAdapter(getActivity(), fillMaps, R.layout.onelinelist2, from, to);
 		lv.setAdapter(adapter);
 
 

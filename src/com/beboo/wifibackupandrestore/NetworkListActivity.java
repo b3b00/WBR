@@ -73,7 +73,7 @@ public abstract class NetworkListActivity extends ListActivity implements Networ
 		}
 
 		// fill in the grid_item layout
-		SimpleAdapter adapter = new SimpleAdapter(this, fillMaps, R.layout.onelinelist2, from, to);
+		SimpleAdapter adapter = new NetworkListAdapter(this, fillMaps, R.layout.onelinelist2, from, to);
 		lv.setAdapter(adapter);
 
 
@@ -100,7 +100,7 @@ public abstract class NetworkListActivity extends ListActivity implements Networ
 		}
 
 		// fill in the grid_item layout
-		SimpleAdapter adapter = new SimpleAdapter(this, fillMaps, R.layout.onelinelist2, from, to);
+		SimpleAdapter adapter = new NetworkListAdapter(this, fillMaps, R.layout.onelinelist2, from, to);
 		lv.setAdapter(adapter);
 
 

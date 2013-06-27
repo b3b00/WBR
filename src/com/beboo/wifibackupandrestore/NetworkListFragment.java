@@ -2,6 +2,7 @@ package com.beboo.wifibackupandrestore;
 
 
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -33,12 +34,7 @@ import android.widget.TextView;
 import com.beboo.wifibackupandrestore.backupmanagement.Network;
 import com.beboo.wifibackupandrestore.backupmanagement.NetworkDataChangedListener;
 
-/**
-* Simple class for showing List of elements in Fragment
-* @author Artem Zinnatullin
-* @see http://android.artemzin.ru/?p=7
-*
-*/
+
 public abstract class NetworkListFragment extends ListFragment  implements NetworkDataChangedListener, OnItemClickListener {
 
 
@@ -156,9 +152,58 @@ public NetworkListFragment() {
 		alert.setMessage("Alias : "+net.getAlias()+" \nSSID : "+net.getSsid()+" \nkeymgmt : "+net.getKeyManagment()+" \nPSK : "+net.getShatedKey());
 
 		// Set an EditText view to get user input 		
-		alert.setPositiveButton(getString(R.string.ok), null);
+		alert.setPositiveButton(getString(R.string.ok),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        unSelectRow(selectedView,selectedPosition);
+                                    }
+                                });
 		alert.show();
 		
 	}
+
+
+    /************************************************
+     *
+     * actionMode
+     *
+     ************************************************/
+
+    protected Network selectedNetwork;
+
+    protected View selectedView;
+
+    protected int selectedPosition;
+
+    protected void selectRow(Network net, View view, int position) {
+        if (selectedNetwork != null) {
+            unSelectRow(selectedView,selectedPosition);
+        }
+        selectedNetwork = net;
+        selectedPosition = position;
+        selectedView = view;
+
+        Resources res = getActivity().getResources();
+        if (position % 2 == 0) {
+            view.setBackgroundColor(res.getColor(R.color.selected_even_line));
+        }
+        else {
+            view.setBackgroundColor(res.getColor(R.color.selected_odd_line));
+        }
+    }
+
+    protected void unSelectRow(View view, int position) {
+        Resources res = getActivity().getResources();
+        if (position % 2 == 0) {
+            view.setBackgroundColor(res.getColor(R.color.even_line));
+        }
+        else {
+            view.setBackgroundColor(res.getColor(R.color.odd_line));
+        }
+
+        selectedNetwork = null;
+        selectedPosition = -1;
+        selectedView = null;
+    }
 
 }

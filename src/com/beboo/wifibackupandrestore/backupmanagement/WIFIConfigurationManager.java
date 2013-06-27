@@ -127,7 +127,7 @@ public class WIFIConfigurationManager {
         String configFilename = getConfigurationFile();
         loadBackuped(backupFile.getAbsolutePath());
         loadConfigured(configFilename);
-        if (configFilename.contains("sdcard")) {
+        if (configFilename != null && configFilename.contains("sdcard")) {
             File config = new File(configFilename);
             config.delete();
         }

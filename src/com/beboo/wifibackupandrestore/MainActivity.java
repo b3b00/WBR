@@ -88,6 +88,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private void initComponents() {
 		// Set up the action bar.
         final ActionBar actionBar = getActionBar();
+		
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		actionBar.addTab(actionBar.newTab().setText(getResources().getString(R.string.configureds)).setTabListener(this));
@@ -101,7 +102,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		switch (item.getItemId()) {
 			case R.id.menu_refresh:
 				// app icon in action bar clicked; refresh 
-				//Toast.makeText(this,"rafraichir",Toast.LENGTH_LONG).show();
 				WIFIConfigurationManager.getInstance().refresh();				
 				return true;
 			default:
@@ -162,23 +162,5 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
-    /**
-* A dummy fragment representing a section of the app, but that simply displays dummy text.
-*/
-    public static class DummySectionFragment extends Fragment {
-        public DummySectionFragment() {
-        }
-
-        public static final String ARG_SECTION_NUMBER = "section_number";
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            TextView textView = new TextView(getActivity());
-            textView.setGravity(Gravity.CENTER);
-            Bundle args = getArguments();
-            textView.setText(Integer.toString(args.getInt(ARG_SECTION_NUMBER)));
-            return textView;
-        }
-    }
+    
 }

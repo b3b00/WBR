@@ -3,12 +3,15 @@ package com.beboo.wifibackupandrestore;
 import java.io.IOException;
 import java.util.ArrayList;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,7 +47,7 @@ import com.beboo.wifibackupandrestore.backupmanagement.WIFIConfigurationManager;
 import android.widget.SimpleAdapter;
 
 
-public class ConfiguredFragment extends NetworkListFragment {
+public class ConfiguredFragment extends NetworkListFragment implements ActionMode.Callback {
 
 	private WIFIConfigurationManager confManager;
 
@@ -170,8 +173,17 @@ public class ConfiguredFragment extends NetworkListFragment {
 		
 		//final Network net = confManager.getBackupedNetworks().get(position);
 		final Network net = confManager.getConfiguredNetworkBySsid(ssid.getText().toString());
-		viewNetwork(net);
+
+        Resources res = parent.getResources();
+        selectRow(net,view,position);
+
+        this.getActivity().startActionMode(this);
+
+
 	}
+
+
+
 
 	
 	/*********************************************
@@ -182,11 +194,103 @@ public class ConfiguredFragment extends NetworkListFragment {
 	 **********************************************/
 
 
+
+
 	public void onNetworkDataChanged() {
 
 		Log.d("WBR","ConfiguredActivity : configured networks updated");		
 		contentAdapter = initList(confManager.getConfiguredNetworks());
 		//initList(confManager.getConfiguredNetworks());
 	}
+
+
+    /************************************************
+     *
+     * actionMode
+     *
+     ************************************************/
+
+
+
+
+
+
+    // Called when the action mode is created; startActionMode() was called
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        // Inflate a menu resource providing context menu items
+        MenuInflater inflater = mode.getMenuInflater();
+        inflater.inflate(R.menu.contextmode_configured, menu);
+        return true;
+    }
+
+    // Called each time the action mode is shown. Always called after onCreateActionMode, but
+// may be called multiple times if the mode is invalidated.
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        return false; // Return false if nothing is done
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    // Called when the user selects a contextual menu item
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        Context ctx = getActivity();
+        switch (item.getItemId()) {
+            case R.id.save_network_action: {
+                Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked :: was on "+selectedNetwork.getSsid()+" / "+selectedNetwork);
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle(R.string.backup);
+
+
+                String msg = getString(R.string.msg_rename_net) + " " +selectedNetwork.getSsid()+ " :";
+                alert.setMessage(msg);
+
+                // Set an EditText view to get user input
+                final EditText input = new EditText(getActivity());
+                alert.setView(input);
+
+                DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (id == DialogInterface.BUTTON_POSITIVE) {
+                            // TODO Auto-generated method stub
+                            String alias = input.getText().toString();
+                            Log.d("WBR","setting alias ["+alias+"] to network ["+selectedNetwork.getSsid()+"]");
+                            backupNetwork(selectedNetwork, alias);
+                            unSelectRow(selectedView,selectedPosition);
+                        }
+                    }
+                };
+
+                alert.setPositiveButton(getString(R.string.ok), listener);
+                alert.setNegativeButton(getString(R.string.cancel), listener);
+
+                alert.show();
+                break;
+            }
+            case R.id.view_conf_network_action : {
+                viewNetwork(selectedNetwork);
+
+                break;
+            }
+        }
+
+
+
+        if (mode != null) {
+            mode.finish();
+        }
+        return true;
+    }
+
+    // Called when the user exits the action mode
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
+        mode = null;
+    }
 
 }

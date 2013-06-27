@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item 
-     	 android:id="@+id/save_network" 
-     	 android:title="@string/backup">
+     	 android:id="@+id/save_network_action"
+         android:icon="@android:drawable/ic_menu_save"
+         android:showAsAction="always">
 	</item>
 	<item
-       android:id="@+id/view_conf_network"
-       android:title="@string/view">       
+       android:id="@+id/view_conf_network_action"
+       android:icon="@android:drawable/ic_menu_view"
+       android:showAsAction="always">
 	</item>
 </menu>

@@ -23,7 +23,7 @@ public class BackupedFragment extends NetworkListFragment implements ActionMode.
 
     private ActionMode actionMode;
 
-	private WIFIConfigurationManager confManager;
+
 
 	private SimpleAdapter contentAdapter;
 	
@@ -57,54 +57,7 @@ public class BackupedFragment extends NetworkListFragment implements ActionMode.
 	 * 
 	 **********************************************/
 
-	/*
-	 
-	// Menu Contextuel
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
 
-		// On crée notre menu
-		MenuInflater inflater = getActivity().getMenuInflater();
-		inflater.inflate(R.menu.contextmenu_backuped, menu);
-
-		// On récupére le nom pour l'entête du menu
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-		int position =  info.position;
-		Network net = confManager.getBackupedNetworks().get(position);
-
-	}
-
-	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-
-		Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked");
-		TextView ssid = (TextView)info.targetView.findViewById(R.id.ssid);
-		Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked :: was on "+ssid.getText()+" / @"+info.position);
-		final Network net = confManager.getBackupedNetworkBySsid(ssid.getText().toString());
-		
-		if (net != null) {
-			switch (item.getItemId()) {
-			case R.id.restore_network: {
-				restoreNetwork(net);
-				break;
-			}		
-			case R.id.view_backup_network : {
-				viewNetwork(net);
-				break;
-			}
-			case R.id.delete_backup_network : {
-				confManager.deleteBackupedNetwork(net); 
-			}
-            case R.id.edit_backup_network : {
-                editNetwork(net);
-
-            }
-			}
-		}
-		return true;
-	}
-	*/
 
 	public void restoreNetwork(Network net) {
 		confManager.restoreNetwork(net);
@@ -146,22 +99,16 @@ public class BackupedFragment extends NetworkListFragment implements ActionMode.
 
     }
 
-    private Network selectedNetwork;
 
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-		TextView ssid = (TextView)getActivity().findViewById(R.id.ssid);
 
-		//final Network net = confManager.getBackupedNetworks().get(position);
-		final Network net = confManager.getConfiguredNetworkBySsid(ssid.getText().toString());
+    @Override
+    public Network getNetworkByView(View view) {
+        TextView  ssidText = (TextView)view.findViewById(R.id.ssid);
+        String ssid = ssidText.getText().toString();
+        return confManager.getBackupedNetworkBySsid(ssid);
+    }
 
-		//viewNetwork(net);
-        selectRow(net,view,position);
-        selectedPosition = position;
-        selectedView = view;
-
-        this.getActivity().startActionMode(this);
-	}
 
 
 	/*********************************************
@@ -202,7 +149,8 @@ public class BackupedFragment extends NetworkListFragment implements ActionMode.
 // may be called multiple times if the mode is invalidated.
     @Override
     public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-        return false; // Return false if nothing is done
+        actionMode = mode;
+        return true;
     }
 
     @Override

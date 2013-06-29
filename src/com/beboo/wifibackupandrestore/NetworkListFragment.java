@@ -5,6 +5,7 @@ package com.beboo.wifibackupandrestore;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +34,10 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import com.beboo.wifibackupandrestore.backupmanagement.Network;
 import com.beboo.wifibackupandrestore.backupmanagement.NetworkDataChangedListener;
+import com.beboo.wifibackupandrestore.backupmanagement.WIFIConfigurationManager;
 
 
-public abstract class NetworkListFragment extends ListFragment  implements NetworkDataChangedListener, OnItemClickListener {
+public abstract class NetworkListFragment extends ListFragment  implements NetworkDataChangedListener, OnItemClickListener, ActionMode.Callback {
 
 
 private static final String KEYMGMT_ITEM = "keymgmt";
@@ -169,22 +171,22 @@ public NetworkListFragment() {
      *
      ************************************************/
 
+    protected ActionMode actionMode;
+
     protected Network selectedNetwork;
 
     protected View selectedView;
 
-    protected int selectedPosition;
+    protected int selectedPosition = -1;
+
+    protected WIFIConfigurationManager confManager;
+
+    public abstract Network getNetworkByView(View view);
 
     protected void selectRow(Network net, View view, int position) {
-        if (selectedNetwork != null) {
-            unSelectRow(selectedView,selectedPosition);
-        }
-        selectedNetwork = net;
-        selectedPosition = position;
-        selectedView = view;
-
         Resources res = getActivity().getResources();
         if (position % 2 == 0) {
+            //@android:color/holo_blue_light;
             view.setBackgroundColor(res.getColor(R.color.selected_even_line));
         }
         else {
@@ -200,10 +202,73 @@ public NetworkListFragment() {
         else {
             view.setBackgroundColor(res.getColor(R.color.odd_line));
         }
+    }
 
-        selectedNetwork = null;
-        selectedPosition = -1;
-        selectedView = null;
+
+
+
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+        final Network net = getNetworkByView(view);
+
+        Resources res = parent.getResources();
+
+        Log.d("WBR","state : selectepos::"+selectedPosition+" / selectedNetwork ::"+selectedNetwork);
+
+        if (position == selectedPosition) {
+            //
+            // deselection d'une ligne
+            //
+            selectedNetwork = null;
+            selectedPosition = -1;
+            selectedView = null;
+            Log.d("WBR"," new state :: selectepos::"+selectedPosition+" / selectedNetwork ::"+selectedNetwork);
+            Log.d("WBR","position is the same => selection @"+position);
+            unSelectRow(view,position);
+
+            Log.d("WBR","click on same position => hiding action mode ... "+(actionMode != null));
+            if (actionMode != null) {
+                Log.d("WBR","hiding action mode");
+                actionMode.finish();
+            }
+        }
+        else {
+            //
+            // selection d'une ligne (differente ou non)
+            //
+            Log.d("WBR","position is not the same => select @"+position+" && unselect @"+selectedPosition);
+            if (selectedPosition >= 0) {
+                Log.d("WBR","selectedPos["+selectedPosition+"] >= 0 ==> unselecting");
+                unSelectRow(selectedView,selectedPosition);
+            }
+            Log.d("WBR","selecting @"+position);
+            selectRow(net,view,position);
+
+            selectedNetwork = net;
+            selectedPosition = position;
+            selectedView = view;
+            Log.d("WBR"," new state :: selectepos::"+selectedPosition+" / selectedNetwork ::"+selectedNetwork);
+            this.getActivity().startActionMode(this);
+        }
+        Log.d("WBR","########################################");
+
+/*
+        if (selectedNetwork == null) {
+            selectRow(net,view,position);
+            this.getActivity().startActionMode(this);
+        }
+        else {
+            unSelectRow(view,position);
+
+            if (actionMode != null) {
+                actionMode.finish();
+            }
+        }
+*/
+
+
+
     }
 
 }

@@ -49,7 +49,7 @@ import android.widget.SimpleAdapter;
 
 public class ConfiguredFragment extends NetworkListFragment implements ActionMode.Callback {
 
-	private WIFIConfigurationManager confManager;
+
 
 	private SimpleAdapter contentAdapter;
 	
@@ -75,7 +75,9 @@ public class ConfiguredFragment extends NetworkListFragment implements ActionMod
 
 
 // Menu Contextuel
-	@Override
+	/*@Override
+
+
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 
@@ -145,7 +147,7 @@ public class ConfiguredFragment extends NetworkListFragment implements ActionMod
 		}
 		return true;
 	}
-
+*/
 	
 	
 	private void backupNetwork(Network network, String alias) {
@@ -165,25 +167,15 @@ public class ConfiguredFragment extends NetworkListFragment implements ActionMod
 		getListView().invalidate(); 
 	}
 
-	
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked");
-		TextView ssid = (TextView)getActivity().findViewById(R.id.alias);
-		Log.d("WBR","contextual menu ["+getString(R.string.backup)+"] clicked :: was on "+ssid);
-		
-		//final Network net = confManager.getBackupedNetworks().get(position);
-		final Network net = confManager.getConfiguredNetworkBySsid(ssid.getText().toString());
-
-        Resources res = parent.getResources();
-        selectRow(net,view,position);
-
-        this.getActivity().startActionMode(this);
-
-
-	}
 
 
 
+    @Override
+    public Network getNetworkByView(View view) {
+        TextView  ssidText = (TextView)view.findViewById(R.id.alias);
+        String ssid = ssidText.getText().toString();
+        return confManager.getConfiguredNetworkBySsid(ssid);
+    }
 
 	
 	/*********************************************
@@ -228,7 +220,8 @@ public class ConfiguredFragment extends NetworkListFragment implements ActionMod
 // may be called multiple times if the mode is invalidated.
     @Override
     public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-        return false; // Return false if nothing is done
+        actionMode = mode;
+        return true;
     }
 
     @Override

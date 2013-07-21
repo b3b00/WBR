@@ -8,9 +8,9 @@
     <string name="restore_failure">restore failed</string>
 	<string name="backup">Backup</string>
 	<string name="restore">Restore</string>
-	<string name="backupeds">backuped</string>
+	<string name="backupeds">backed-up</string>
 	<string name="configureds">configured</string>
-	<string name="backuped">backuped</string>
+	<string name="backuped">backed-up</string>
 	<string name="configured">configured</string>
 	<string name="confirm_restore">Confirm restoration of networks :</string>
 	<string name="ok">OK</string>
@@ -21,5 +21,6 @@
 	<string name="delete">delete</string>
     <string name="msg_rename_net">Rename network </string>
     <string name="msg_set_alias_net">set an alias to network </string>
+
 	
 </resources>

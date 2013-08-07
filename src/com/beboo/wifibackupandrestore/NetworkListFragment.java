@@ -9,29 +9,19 @@ import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ListActivity;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
+
 import com.beboo.wifibackupandrestore.backupmanagement.Network;
 import com.beboo.wifibackupandrestore.backupmanagement.NetworkDataChangedListener;
 import com.beboo.wifibackupandrestore.backupmanagement.WIFIConfigurationManager;
@@ -138,7 +128,7 @@ public NetworkListFragment() {
 		alertDialog.setTitle("");
 		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {			
 			public void onClick(DialogInterface dialog, int which) {
-				return;				
+
 			}
 		});
 		alertDialog.setMessage(message);
@@ -183,7 +173,7 @@ public NetworkListFragment() {
 
     public abstract Network getNetworkByView(View view);
 
-    protected void selectRow(Network net, View view, int position) {
+    protected void selectRow(View view, int position) {
         Resources res = getActivity().getResources();
         if (position % 2 == 0) {
             //@android:color/holo_blue_light;
@@ -212,7 +202,7 @@ public NetworkListFragment() {
 
         final Network net = getNetworkByView(view);
 
-        Resources res = parent.getResources();
+
 
         Log.d("WBR","state : selectepos::"+selectedPosition+" / selectedNetwork ::"+selectedNetwork);
 
@@ -243,7 +233,7 @@ public NetworkListFragment() {
                 unSelectRow(selectedView,selectedPosition);
             }
             Log.d("WBR","selecting @"+position);
-            selectRow(net,view,position);
+            selectRow(view,position);
 
             selectedNetwork = net;
             selectedPosition = position;
